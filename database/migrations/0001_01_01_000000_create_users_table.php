@@ -9,15 +9,20 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->rememberToken();
+            $table->enum('role', ['admin', 'alumni']);
+            $table->string('nip')->nullable()->unique();
+            $table->string('nim')->nullable()->unique();
+            $table->string('program_studi')->nullable();
+            $table->string('jurusan')->nullable();
+            $table->year('tahun_masuk')->nullable();
+            $table->year('tahun_lulus')->nullable();
             $table->timestamps();
         });
 
